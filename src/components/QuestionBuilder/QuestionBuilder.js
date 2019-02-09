@@ -29,8 +29,14 @@ class QuestionBuilder extends Component {
 
     questionAddHandler = event => {
         event.preventDefault();
-        let value = this.state.value;
-        this.props.onAddQuestion(value);
+        const formData = {};
+        for (let formElemId in this.state.questionForm) {
+            formData[formElemId] = this.state.questionForm[
+                formElemId
+            ].value;
+        }
+
+        this.props.onAddQuestion(formData);
     };
 
     inputChangedHandler = (event, formElemId) => {
@@ -56,7 +62,7 @@ class QuestionBuilder extends Component {
             });
         }
         let form = (
-            <form onSumbit={this.questionAddHandler}>
+            <form onSubmit={this.questionAddHandler}>
                 {formElemArray.map(formElem => (
                     <Input 
                         key={formElem.id}

@@ -7,7 +7,10 @@ import styles from "./TestGen.module.scss";
 class TestGen extends Component {
     render() {
         let questions = this.props.questions.map(question => (
-            <p key={question}>{question}</p>
+            <div key={question.index}>
+                <h2>{question.question}</h2>
+                <p>{question.opt1}</p>
+            </div>
         ));
 
         return (
